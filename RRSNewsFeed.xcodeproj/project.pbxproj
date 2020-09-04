@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		24D9716325029F8D00B3170B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9716225029F8D00B3170B /* AppDelegate.swift */; };
 		24D9716525029F8D00B3170B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9716425029F8D00B3170B /* SceneDelegate.swift */; };
-		24D9716725029F8D00B3170B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9716625029F8D00B3170B /* ViewController.swift */; };
+		24D9716725029F8D00B3170B /* NewsFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9716625029F8D00B3170B /* NewsFeedViewController.swift */; };
 		24D9716A25029F8D00B3170B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D9716825029F8D00B3170B /* Main.storyboard */; };
 		24D9716D25029F8D00B3170B /* RRSNewsFeed.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 24D9716B25029F8D00B3170B /* RRSNewsFeed.xcdatamodeld */; };
 		24D9716F25029F9000B3170B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 24D9716E25029F9000B3170B /* Assets.xcassets */; };
 		24D9717225029F9000B3170B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 24D9717025029F9000B3170B /* LaunchScreen.storyboard */; };
 		24D9717D25029F9100B3170B /* RRSNewsFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9717C25029F9100B3170B /* RRSNewsFeedTests.swift */; };
+		24D971882502A05200B3170B /* RSSNewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D971872502A05200B3170B /* RSSNewsFeed.swift */; };
+		24D9718C2502ADB700B3170B /* NewsFeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9718B2502ADB700B3170B /* NewsFeedParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +33,7 @@
 		24D9715F25029F8D00B3170B /* RRSNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RRSNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D9716225029F8D00B3170B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24D9716425029F8D00B3170B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		24D9716625029F8D00B3170B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		24D9716625029F8D00B3170B /* NewsFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsFeedViewController.swift; path = /Users/sergeyberdnik/Documents/XcodeProjects/RRSNewsFeed/RRSNewsFeed/NewsFeedViewController.swift; sourceTree = "<absolute>"; };
 		24D9716925029F8D00B3170B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		24D9716C25029F8D00B3170B /* RRSNewsFeed.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = RRSNewsFeed.xcdatamodel; sourceTree = "<group>"; };
 		24D9716E25029F9000B3170B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +42,8 @@
 		24D9717825029F9100B3170B /* RRSNewsFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RRSNewsFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D9717C25029F9100B3170B /* RRSNewsFeedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RRSNewsFeedTests.swift; sourceTree = "<group>"; };
 		24D9717E25029F9100B3170B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		24D971872502A05200B3170B /* RSSNewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSNewsFeed.swift; sourceTree = "<group>"; };
+		24D9718B2502ADB700B3170B /* NewsFeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,9 +86,10 @@
 			isa = PBXGroup;
 			children = (
 				24D9716225029F8D00B3170B /* AppDelegate.swift */,
+				24D9718D2502BB6B00B3170B /* Model */,
+				24D9718E2502BB7B00B3170B /* NetworkService */,
 				24D9716425029F8D00B3170B /* SceneDelegate.swift */,
-				24D9716625029F8D00B3170B /* ViewController.swift */,
-				24D9716825029F8D00B3170B /* Main.storyboard */,
+				24D9718F2502BB9600B3170B /* NewsFeedController */,
 				24D9716E25029F9000B3170B /* Assets.xcassets */,
 				24D9717025029F9000B3170B /* LaunchScreen.storyboard */,
 				24D9717325029F9000B3170B /* Info.plist */,
@@ -100,6 +105,31 @@
 				24D9717E25029F9100B3170B /* Info.plist */,
 			);
 			path = RRSNewsFeedTests;
+			sourceTree = "<group>";
+		};
+		24D9718D2502BB6B00B3170B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				24D971872502A05200B3170B /* RSSNewsFeed.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		24D9718E2502BB7B00B3170B /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				24D9718B2502ADB700B3170B /* NewsFeedParser.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		24D9718F2502BB9600B3170B /* NewsFeedController */ = {
+			isa = PBXGroup;
+			children = (
+				24D9716825029F8D00B3170B /* Main.storyboard */,
+				24D9716625029F8D00B3170B /* NewsFeedViewController.swift */,
+			);
+			path = NewsFeedController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,8 +234,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				24D9716D25029F8D00B3170B /* RRSNewsFeed.xcdatamodeld in Sources */,
-				24D9716725029F8D00B3170B /* ViewController.swift in Sources */,
+				24D9716725029F8D00B3170B /* NewsFeedViewController.swift in Sources */,
+				24D9718C2502ADB700B3170B /* NewsFeedParser.swift in Sources */,
 				24D9716325029F8D00B3170B /* AppDelegate.swift in Sources */,
+				24D971882502A05200B3170B /* RSSNewsFeed.swift in Sources */,
 				24D9716525029F8D00B3170B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

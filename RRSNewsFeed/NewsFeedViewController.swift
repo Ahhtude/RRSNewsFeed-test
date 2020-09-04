@@ -12,11 +12,9 @@ fileprivate struct Constats {
     static let baseURl =  "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
 }
 
-class NewsFeedViewController: UIViewController {
+class NewsFeedViewController: UITableViewController {
     private var rssItems: [RSSNewsFeed]?
-    
-    @IBOutlet var tableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchData()
@@ -31,27 +29,27 @@ class NewsFeedViewController: UIViewController {
         newsParser.parseNewsFeed(url: Constats.baseURl) {[unowned self] (rssItem) in
             self.rssItems = rssItem
             print("ITEMS IS RSS \(rssItem)")
-            self.tableView.reloadData()
+            //self.tableView.reloadData()
             //self.tableview.reloadSection(IndexSet(integer:0), with: .left)
         }
     }
 }
 
-extension NewsFeedViewController : UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+extension NewsFeedViewController {
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         print("DATA IS LOAD \(self.rssItems![indexPath.item])")
         
         return cell
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let rssItems = rssItems else {
             return 0
         }
         return rssItems.count
     }
-    
     
 }
 
