@@ -8,30 +8,43 @@
 
 import UIKit
 
-fileprivate struct Constats {
-    static let baseURl =  "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
-}
-
 class NewsFeedViewController: UITableViewController {
-    private var rssItems: [RSSNewsFeed]?
-
+    let viewModel = NewsFeedViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchData()
+        configureTableView()
+        bindToViewModel()
         print("LOL")
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        
     }
     
-    private func fetchData(){
-        let newsParser = NewsFeedParser()
-        newsParser.parseNewsFeed(url: Constats.baseURl) {[unowned self] (rssItem) in
-            self.rssItems = rssItem
-            print("ITEMS IS RSS \(rssItem)")
-            //self.tableView.reloadData()
-            //self.tableview.reloadSection(IndexSet(integer:0), with: .left)
+    private func configureTableView() {
+            tableView?.register(UINib(nibName: "DrinkFeedViewCell", bundle: nil),
+            forCellReuseIdentifier: "DrinkFeedCellViewModel")
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+    }
+    
+    private func bindToViewModel() {
+        self.viewModel.didUpdate = { [weak self] _ in
+            self?.viewModelDidUpdate()
         }
+//        self.viewModel.didError = { [weak self] error in
+//            self?.viewModelDidError(error: error)
+//        }
+        reloadData()
+    }
+    
+//    private func viewModelDidError(error: NetworkError) {
+//       UIAlertView(title: "Error", message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK").show()
+//    }
+    
+    private func viewModelDidUpdate() {
+        self.tableView.reloadData()
+    }
+    
+    private func reloadData() {
+        self.viewModel.reloadData()
     }
 }
 
@@ -39,16 +52,12 @@ extension NewsFeedViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        print("DATA IS LOAD \(self.rssItems![indexPath.item])")
-        
+        print("DATA IS LOAD \(viewModel.rssItems[indexPath.item])")
         return cell
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let rssItems = rssItems else {
-            return 0
-        }
-        return rssItems.count
+        return viewModel.rssItems.count
     }
     
 }
