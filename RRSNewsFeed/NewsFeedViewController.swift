@@ -20,6 +20,7 @@ class NewsFeedViewController: UITableViewController {
     private func configureTableView() {
             tableView?.register(UINib(nibName: "NewsFeedViewCell", bundle: nil),
             forCellReuseIdentifier: "NewsFeedViewCellViewModel")
+        
             self.tableView.delegate = self
             self.tableView.dataSource = self
     }
