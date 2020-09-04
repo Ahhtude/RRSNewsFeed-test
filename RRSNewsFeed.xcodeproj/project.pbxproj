@@ -17,6 +17,7 @@
 		24D9717D25029F9100B3170B /* RRSNewsFeedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9717C25029F9100B3170B /* RRSNewsFeedTests.swift */; };
 		24D971882502A05200B3170B /* RSSNewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D971872502A05200B3170B /* RSSNewsFeed.swift */; };
 		24D9718C2502ADB700B3170B /* NewsFeedParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D9718B2502ADB700B3170B /* NewsFeedParser.swift */; };
+		A75A70D46620BEA0CC01246F /* Pods_RRSNewsFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D52CCB324B11D13ECE1B4E8B /* Pods_RRSNewsFeed.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0167026E740A8A2F56D73E32 /* Pods-RRSNewsFeed.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RRSNewsFeed.release.xcconfig"; path = "Target Support Files/Pods-RRSNewsFeed/Pods-RRSNewsFeed.release.xcconfig"; sourceTree = "<group>"; };
 		24D9715F25029F8D00B3170B /* RRSNewsFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RRSNewsFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		24D9716225029F8D00B3170B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		24D9716425029F8D00B3170B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +46,8 @@
 		24D9717E25029F9100B3170B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		24D971872502A05200B3170B /* RSSNewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSNewsFeed.swift; sourceTree = "<group>"; };
 		24D9718B2502ADB700B3170B /* NewsFeedParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedParser.swift; sourceTree = "<group>"; };
+		ADED7CC6F204D10EBFC03324 /* Pods-RRSNewsFeed.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RRSNewsFeed.debug.xcconfig"; path = "Target Support Files/Pods-RRSNewsFeed/Pods-RRSNewsFeed.debug.xcconfig"; sourceTree = "<group>"; };
+		D52CCB324B11D13ECE1B4E8B /* Pods_RRSNewsFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RRSNewsFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A75A70D46620BEA0CC01246F /* Pods_RRSNewsFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +75,8 @@
 				24D9716125029F8D00B3170B /* RRSNewsFeed */,
 				24D9717B25029F9100B3170B /* RRSNewsFeedTests */,
 				24D9716025029F8D00B3170B /* Products */,
+				99A1C9732B4BD9E1FA5F8BBF /* Pods */,
+				5F2311756791581B6B9FBFA2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -132,6 +139,24 @@
 			path = NewsFeedController;
 			sourceTree = "<group>";
 		};
+		5F2311756791581B6B9FBFA2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D52CCB324B11D13ECE1B4E8B /* Pods_RRSNewsFeed.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		99A1C9732B4BD9E1FA5F8BBF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ADED7CC6F204D10EBFC03324 /* Pods-RRSNewsFeed.debug.xcconfig */,
+				0167026E740A8A2F56D73E32 /* Pods-RRSNewsFeed.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,6 +164,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 24D9718125029F9100B3170B /* Build configuration list for PBXNativeTarget "RRSNewsFeed" */;
 			buildPhases = (
+				D53CC866753BBCB6B070A59E /* [CP] Check Pods Manifest.lock */,
 				24D9715B25029F8D00B3170B /* Sources */,
 				24D9715C25029F8D00B3170B /* Frameworks */,
 				24D9715D25029F8D00B3170B /* Resources */,
@@ -227,6 +253,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D53CC866753BBCB6B070A59E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RRSNewsFeed-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		24D9715B25029F8D00B3170B /* Sources */ = {
@@ -396,6 +447,7 @@
 		};
 		24D9718225029F9100B3170B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADED7CC6F204D10EBFC03324 /* Pods-RRSNewsFeed.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -414,6 +466,7 @@
 		};
 		24D9718325029F9100B3170B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0167026E740A8A2F56D73E32 /* Pods-RRSNewsFeed.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
