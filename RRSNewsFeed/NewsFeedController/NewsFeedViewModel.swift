@@ -29,11 +29,12 @@ class NewsFeedViewModel {
         fetchData()
     }
     
-    private func fetchData(){
+    private func fetchData() {
         let newsParser = NewsFeedParser()
         newsParser.parseNewsFeed(url: Constats.baseURl) {[unowned self] (rssItem) in
             self.rssItems = rssItem
-            print("ITEMS IS RSS \(rssItem)")
+            self.isUpdating = false
+            //print("ITEMS IS RSS \(rssItem)")
         }
     }
 }

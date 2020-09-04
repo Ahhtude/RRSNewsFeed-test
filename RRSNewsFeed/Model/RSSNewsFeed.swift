@@ -9,8 +9,8 @@
 import Foundation
 
 struct RSSNewsFeed: Codable {
-    var titile: String
-    var body: String
+    var title: String
+    var description: String
     let pubData: String
 }
 

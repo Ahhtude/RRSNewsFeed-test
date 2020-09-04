@@ -15,12 +15,11 @@ class NewsFeedViewController: UITableViewController {
         super.viewDidLoad()
         configureTableView()
         bindToViewModel()
-        print("LOL")
     }
     
     private func configureTableView() {
-            tableView?.register(UINib(nibName: "DrinkFeedViewCell", bundle: nil),
-            forCellReuseIdentifier: "DrinkFeedCellViewModel")
+            tableView?.register(UINib(nibName: "NewsFeedViewCell", bundle: nil),
+            forCellReuseIdentifier: "NewsFeedViewCellViewModel")
             self.tableView.delegate = self
             self.tableView.dataSource = self
     }
@@ -40,7 +39,9 @@ class NewsFeedViewController: UITableViewController {
 //    }
     
     private func viewModelDidUpdate() {
-        self.tableView.reloadData()
+        OperationQueue.main.addOperation {[unowned self] in
+            self.tableView.reloadData()
+        }
     }
     
     private func reloadData() {
@@ -49,10 +50,13 @@ class NewsFeedViewController: UITableViewController {
 }
 
 extension NewsFeedViewController {
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        print("DATA IS LOAD \(viewModel.rssItems[indexPath.item])")
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+//        print("DATA IS LOAD \(viewModel.rssItems[indexPath.item])")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedViewCellViewModel") as? NewsFeedViewCell else { return UITableViewCell() }
+        print(cell)
+        let feed = viewModel.rssItems[indexPath.row]
+        cell.fill(model: NewsFeedViewCellViewModel(model: feed))
         return cell
     }
     
