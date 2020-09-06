@@ -20,15 +20,21 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
     
     private var currentDescription: String = "" {
         didSet {
-            currentTitle = currentTitle.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            currentDescription = currentDescription.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
     }
     
-    private var currentPubDate: String = "" {
+    private var currentMoreData: String = "" {
         didSet {
-            currentTitle = currentTitle.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            currentMoreData = currentMoreData.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
     }
+    
+//    private var currentPubDate: String = "" {
+//        didSet {
+//            currentPubDate = currentPubDate.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+//        }
+//    }
     
     private var parserCompletionHandler: (([RSSNewsFeed])->Void)?
     
@@ -61,7 +67,8 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
             if currentElement == "item" {
                 currentTitle = ""
                 currentDescription = ""
-                currentPubDate = ""
+                //currentPubDate = ""
+                currentMoreData = ""
             }
         }
         
@@ -69,14 +76,15 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
             switch currentElement {
             case "title": currentTitle += string
             case "description": currentDescription += string
-            case "pubdate": currentPubDate += string
+            case "link": currentMoreData += string
+            //case "pubdate": currentPubDate += string
             default: break
             }
         }
         
         func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
             if elementName == "item" {
-                let rssItem = RSSNewsFeed(title: currentTitle, description: currentDescription, pubData: currentPubDate)
+                let rssItem = RSSNewsFeed(title: currentTitle, description: currentDescription,moreData: currentMoreData)
                 self.rssItem.append(rssItem)
             }
         }

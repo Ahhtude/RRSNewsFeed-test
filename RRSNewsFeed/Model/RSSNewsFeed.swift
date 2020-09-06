@@ -11,6 +11,7 @@ import Foundation
 struct RSSNewsFeed: Codable {
     var title: String
     var description: String
-    let pubData: String
+    //let pubData: String
+    let moreData: String
 }
 

@@ -52,10 +52,7 @@ class NewsFeedViewController: UITableViewController {
 
 extension NewsFeedViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-//        print("DATA IS LOAD \(viewModel.rssItems[indexPath.item])")
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedViewCellViewModel") as? NewsFeedViewCell else { return UITableViewCell() }
-        print(cell)
         let feed = viewModel.rssItems[indexPath.row]
         cell.fill(model: NewsFeedViewCellViewModel(model: feed))
         return cell
@@ -63,6 +60,24 @@ extension NewsFeedViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.rssItems.count
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let cell = tableView.cellForRow(at: indexPath) as! NewsFeedViewCell
+        pushDetailVC()
+        tableView.beginUpdates()
+//        cell.titleLabel.numberOfLines = (cell.descriptionLabel.numberOfLines == 0) ? 2 : 0
+//        cell.descriptionLabel.numberOfLines = (cell.descriptionLabel.numberOfLines == 0) ? 3 : 0
+        
+        tableView.endUpdates()
+    }
+    
+    private func pushDetailVC() {
+        let vc =  UIStoryboard(name: "NewsDetailController", bundle: nil)
+        .instantiateViewController(withIdentifier: "NewsDetailController") as! NewsDetailController
+
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

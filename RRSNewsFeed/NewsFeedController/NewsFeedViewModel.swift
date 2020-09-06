@@ -34,7 +34,6 @@ class NewsFeedViewModel {
         newsParser.parseNewsFeed(url: Constats.baseURl) {[unowned self] (rssItem) in
             self.rssItems = rssItem
             self.isUpdating = false
-            //print("ITEMS IS RSS \(rssItem)")
         }
     }
 }

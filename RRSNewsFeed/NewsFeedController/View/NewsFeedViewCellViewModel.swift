@@ -22,9 +22,9 @@ class NewsFeedViewCellViewModel {
     var description : String {
         return model.description
     }
-
-    var publishDate : String {
-        return model.pubData
-    }
+    
+//    var publishDate : String {
+//        return model.pubData
+//    }
 }
 
