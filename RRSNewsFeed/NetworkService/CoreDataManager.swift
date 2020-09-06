@@ -14,6 +14,7 @@ fileprivate struct Constants {
     static let app = UIApplication.shared.delegate as! AppDelegate
     static let context = app.persistentContainer.viewContext
     static let entity = NSEntityDescription.entity(forEntityName: "RssSavedModel", in: context)
+    static let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RssSavedModel")
 }
 
 final class CoreDataManager {
@@ -24,7 +25,7 @@ final class CoreDataManager {
     }
     
     static func addData(post: RSSNewsFeed) {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RssSavedModel")
+        let request = Constants.request
         request.returnsObjectsAsFaults = false
         do {
             let result = try? Constants.context.fetch(request)
@@ -48,6 +49,16 @@ final class CoreDataManager {
         catch {
                     print("Failed saving")
                 }
+    }
+    
+    static func deleteData(object toDelete: RSSNewsFeed) {
+       if let result = try? Constants.context.fetch(Constants.request) {
+        let element = result.map({(element) -> RssSavedModel in
+            return element as! RssSavedModel
+            }).filter({$0.title == toDelete.title})
+        Constants.context.delete(element[0])
+        }
+        
     }
     
     func getAllNews() -> [RssSavedModel] {

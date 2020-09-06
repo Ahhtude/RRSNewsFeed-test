@@ -62,6 +62,8 @@ class NewsFeedViewController: UITableViewController {
 }
 
 extension NewsFeedViewController {
+    
+    //MARK: - Delegate
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedViewCellViewModel") as? NewsFeedViewCell else { return UITableViewCell() }
         let feed = viewModel.rssItems[indexPath.row]
@@ -79,6 +81,7 @@ extension NewsFeedViewController {
         pushDetailVC(newsModel: cell.viewModel.model)
     }
     
+    //MARK:- Push Detail VC
     private func pushDetailVC(newsModel model: RSSNewsFeed) {
         let vc =  UIStoryboard(name: "NewsDetailController", bundle: nil)
         .instantiateViewController(withIdentifier: "NewsDetailController") as! NewsDetailController
@@ -88,12 +91,15 @@ extension NewsFeedViewController {
     }
     
     
+    //MARK:- TableView contextual methods
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         return UISwipeActionsConfiguration(actions: [deleteRow(rowIndexPathAt: indexPath)])
     }
     
     private func deleteRow(rowIndexPathAt indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") {[unowned self] (action, view, _) in
+    
+            CoreDataManager.deleteData(object: self.viewModel.rssItems[indexPath.row])
             self.viewModel.rssItems.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()
