@@ -14,8 +14,7 @@ fileprivate struct Constats {
 }
 
 class NewsFeedViewModel {
-    private let newsParser = NewsFeedParser()
-    private(set) var rssItems: [RSSNewsFeed] = []
+    var rssItems: [RSSNewsFeed] = []
     
     //var didError: ((Error) -> Void)?
     var didUpdate: ((NewsFeedViewModel) -> Void)?
@@ -31,15 +30,13 @@ class NewsFeedViewModel {
     }
     
     private func fetchData() {
-        let newsParser = NewsFeedParser()
-        
-        newsParser.parseNewsFeed(url: Constats.baseURl) {[unowned self] (rssItem) in
-            rssItem.forEach { item in
-                 CoreDataManager.addData(post: item)
-            }
-            
-            self.rssItems = rssItem
-            self.isUpdating = false
+        let array = CoreDataManager.shared.getAllNews()
+        array.forEach { item in
+            self.rssItems.append(RSSNewsFeed(title: item.title!,
+                                             description: item.descr!,
+                                             mediaDataURL: item.mediaData!,
+                                             moreData: item.moreData!))
         }
-    }
+        self.isUpdating = false
+        }
 }

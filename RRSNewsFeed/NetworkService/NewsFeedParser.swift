@@ -9,9 +9,15 @@
 import Foundation
 import Alamofire
 
-class NewsFeedParser: NSObject, XMLParserDelegate {
+final class NewsFeedParser: NSObject, XMLParserDelegate {
     private var rssItem: [RSSNewsFeed] = []
     private var currentElement = ""
+    public static let baseURL: String = "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
+    
+    static let instance = NewsFeedParser()
+    private override init() {
+        super.init()
+    }
     
     private var currentTitle: String = "" {
         didSet {
@@ -53,13 +59,12 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
     
     func parseNewsFeed(url: String, completionHandler: (([RSSNewsFeed]) -> Void)?) -> Void {
         self.parserCompletionHandler = completionHandler
-    
+        DispatchQueue.main.async {
         let request = URLRequest(url: URL(string: url)!)
         let urlSesstion = URLSession.shared
         let task = urlSesstion.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 if let error = error {
-                    print("XXXX")
                     print(error.localizedDescription)
                 }
 
@@ -71,7 +76,7 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
             parser.parse()
         }
         task.resume()
-    }
+        }}
 }
 
 //MARK: - XML Delegate

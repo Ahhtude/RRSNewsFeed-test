@@ -13,10 +13,9 @@ class NewsFeedViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         configureTableView()
         bindToViewModel()
+        //checkStarting()
     }
     
     private func configureTableView() {
@@ -27,9 +26,19 @@ class NewsFeedViewController: UITableViewController {
             self.tableView.dataSource = self
     }
     
+    private func checkStarting() {
+        if self.viewModel.rssItems.isEmpty {
+            let alert = UIAlertController(title: "Internet troubles", message: "You have some trouble with internet. You nead turn ON internet in first lounch", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "okay", style: .default, handler: { action in
+                self.viewModel.reloadData()
+            }))
+            self.present(alert, animated: true)
+        }
+    }
+    
     private func bindToViewModel() {
-        self.viewModel.didUpdate = { [weak self] _ in
-            self?.viewModelDidUpdate()
+        self.viewModel.didUpdate = { [unowned self] _ in
+            self.viewModelDidUpdate()
         }
 //        self.viewModel.didError = { [weak self] error in
 //            self?.viewModelDidError(error: error)
@@ -67,13 +76,7 @@ extension NewsFeedViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath) as! NewsFeedViewCell
-        //print("MORE DATA IS \(cell.viewModel.model.mediaDataURL)")
-        
         pushDetailVC(newsModel: cell.viewModel.model)
-//        tableView.beginUpdates()
-//        cell.titleLabel.numberOfLines = (cell.descriptionLabel.numberOfLines == 0) ? 2 : 0
-//        cell.descriptionLabel.numberOfLines = (cell.descriptionLabel.numberOfLines == 0) ? 3 : 0
-//        tableView.endUpdates()
     }
     
     private func pushDetailVC(newsModel model: RSSNewsFeed) {
@@ -82,6 +85,20 @@ extension NewsFeedViewController {
         let vm = NewsDetailViewModel(newsFeed: model)
         vc.viewModel = vm
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return UISwipeActionsConfiguration(actions: [deleteRow(rowIndexPathAt: indexPath)])
+    }
+    
+    private func deleteRow(rowIndexPathAt indexPath: IndexPath) -> UIContextualAction {
+        let action = UIContextualAction(style: .destructive, title: "Delete") {[unowned self] (action, view, _) in
+            self.viewModel.rssItems.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+            self.tableView.reloadData()
+        }
+        return action
     }
 }
 

@@ -16,17 +16,22 @@ fileprivate struct Constants {
     static let entity = NSEntityDescription.entity(forEntityName: "RssSavedModel", in: context)
 }
 
-class CoreDataManager {
+final class CoreDataManager {
+    static let shared = CoreDataManager()
+    
+    private init() {
+        
+    }
+    
     static func addData(post: RSSNewsFeed) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RssSavedModel")
         request.returnsObjectsAsFaults = false
         do {
             let result = try? Constants.context.fetch(request)
             
-            guard let data = result as? [RssSavedModel]
-        
+            guard let data = result as? [RssSavedModel],!data.map({$0.title}).contains(post.title)
                 else {
-                    print("adding news to core data failed")
+                    //print("adding news to core data failed")
                     return
             }
             
@@ -43,5 +48,19 @@ class CoreDataManager {
         catch {
                     print("Failed saving")
                 }
+    }
+    
+    func getAllNews() -> [RssSavedModel] {
+        var pp: [RssSavedModel] = []
+        do {
+            let r = NSFetchRequest<NSFetchRequestResult>(entityName: "RssSavedModel")
+            let f = try Core.shared.container.viewContext.fetch(r)
+            pp = f as! [RssSavedModel]
+            print("CoreData data count is \(pp.count)")
+            return pp
+        } catch let error as NSError {
+            print("WAS ERROR in GETALLNEWS \(error)")
+            return []
+        }
     }
 }
