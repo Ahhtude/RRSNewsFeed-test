@@ -7,4 +7,7 @@ target 'RRSNewsFeed' do
 
   # Pods for RRSNewsFeed
 
+  pod 'Alamofire'
+  pod 'AlamofireImage', '~> 3.3'
+
 end
