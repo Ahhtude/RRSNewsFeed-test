@@ -13,6 +13,8 @@ class NewsFeedViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         configureTableView()
         bindToViewModel()
     }
@@ -81,6 +83,5 @@ extension NewsFeedViewController {
         vc.viewModel = vm
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
 }
 

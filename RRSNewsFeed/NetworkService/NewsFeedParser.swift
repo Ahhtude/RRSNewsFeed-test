@@ -48,6 +48,7 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
 //        }
 //    }
     
+    
     private var parserCompletionHandler: (([RSSNewsFeed])->Void)?
     
     func parseNewsFeed(url: String, completionHandler: (([RSSNewsFeed]) -> Void)?) -> Void {
@@ -58,6 +59,7 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
         let task = urlSesstion.dataTask(with: request) { (data, response, error) in
             guard let data = data else {
                 if let error = error {
+                    print("XXXX")
                     print(error.localizedDescription)
                 }
 
@@ -88,11 +90,6 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
             if currentElement == "media:content" {
                 currentMediaDataUrl = attributeDict["url"]!
             }
-            
-//            if currentElement == "media:content" {
-//                               currentMediaData = attributeDict
-//                               print("CURRENT ELEMENT IS \(elementName) MEdia element is \(attributeDict["url"])")
-//                           }
         }
         
         func parser(_ parser: XMLParser, foundCharacters string: String) {

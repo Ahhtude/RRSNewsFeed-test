@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreData
 
 fileprivate struct Constats {
     static let baseURl =  "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
@@ -31,7 +32,12 @@ class NewsFeedViewModel {
     
     private func fetchData() {
         let newsParser = NewsFeedParser()
+        
         newsParser.parseNewsFeed(url: Constats.baseURl) {[unowned self] (rssItem) in
+            rssItem.forEach { item in
+                 CoreDataManager.addData(post: item)
+            }
+            
             self.rssItems = rssItem
             self.isUpdating = false
         }

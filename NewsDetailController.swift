@@ -22,6 +22,7 @@ class NewsDetailController: UIViewController {
         super.viewDidLoad()
         self.titleLabel.text = viewModel!.model!.title
         self.descriptionLabel.text = viewModel!.model!.description
+        self.urlTextView.text = "For more: " + viewModel!.model!.moreData
         setUpImage()
     }
     
