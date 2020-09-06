@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import AlamofireImage
 
 class NewsDetailViewModel {
     private let model: RSSNewsFeed?
+    //private let newsImage: UIImage?
     
     init(newsFeed model: RSSNewsFeed) {
         self.model = model

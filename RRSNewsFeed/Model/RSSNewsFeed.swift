@@ -12,6 +12,7 @@ struct RSSNewsFeed: Codable {
     var title: String
     var description: String
     //let pubData: String
+    let mediaDataURL: String
     let moreData: String
 }
 

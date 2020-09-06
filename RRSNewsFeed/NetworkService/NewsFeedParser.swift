@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 class NewsFeedParser: NSObject, XMLParserDelegate {
     private var rssItem: [RSSNewsFeed] = []
@@ -30,6 +31,17 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
         }
     }
     
+    private var currentImgUrl: String = "" {
+        didSet {
+            currentMoreData = currentMoreData.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+    }
+    
+    private var currentMediaDataUrl : String = "" {
+        didSet {
+            currentMediaDataUrl = currentMediaDataUrl.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        }
+    }
 //    private var currentPubDate: String = "" {
 //        didSet {
 //            currentPubDate = currentPubDate.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
@@ -40,7 +52,7 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
     
     func parseNewsFeed(url: String, completionHandler: (([RSSNewsFeed]) -> Void)?) -> Void {
         self.parserCompletionHandler = completionHandler
-        
+    
         let request = URLRequest(url: URL(string: url)!)
         let urlSesstion = URLSession.shared
         let task = urlSesstion.dataTask(with: request) { (data, response, error) in
@@ -48,10 +60,10 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
                 if let error = error {
                     print(error.localizedDescription)
                 }
-                
+
                 return
             }
-            
+
             let parser = XMLParser(data: data)
             parser.delegate = self
             parser.parse()
@@ -64,12 +76,23 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
     extension NewsFeedParser {
         func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
             currentElement = elementName
+            
             if currentElement == "item" {
+                currentMediaDataUrl = ""
                 currentTitle = ""
                 currentDescription = ""
                 //currentPubDate = ""
                 currentMoreData = ""
             }
+            
+            if currentElement == "media:content" {
+                currentMediaDataUrl = attributeDict["url"]!
+            }
+            
+//            if currentElement == "media:content" {
+//                               currentMediaData = attributeDict
+//                               print("CURRENT ELEMENT IS \(elementName) MEdia element is \(attributeDict["url"])")
+//                           }
         }
         
         func parser(_ parser: XMLParser, foundCharacters string: String) {
@@ -84,7 +107,7 @@ class NewsFeedParser: NSObject, XMLParserDelegate {
         
         func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
             if elementName == "item" {
-                let rssItem = RSSNewsFeed(title: currentTitle, description: currentDescription,moreData: currentMoreData)
+                let rssItem = RSSNewsFeed(title: currentTitle, description: currentDescription, mediaDataURL: currentMediaDataUrl, moreData: currentMoreData)
                 self.rssItem.append(rssItem)
             }
         }
