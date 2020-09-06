@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import UIKit
+import AlamofireImage
 
 class NewsDetailController: UIViewController {
     
@@ -16,7 +16,20 @@ class NewsDetailController: UIViewController {
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var urlTextView: UITextView!
     
+    var viewModel: NewsDetailViewModel? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.titleLabel.text = viewModel!.model!.title
+        self.descriptionLabel.text = viewModel!.model!.description
+        setUpImage()
+    }
+    
+    private func setUpImage(){
+        if let url = viewModel?.getImageFromUrlURL(), !url.absoluteString.isEmpty {
+            self.image.af_setImage(withURL: url)
+        } else {
+            self.image.isHidden = true
+        }
     }
 }

@@ -15,68 +15,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" indicatorStyle="white" translatesAutoresizingMaskIntoConstraints="NO" id="O1p-Zk-5zQ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="3Bf-vB-CN7">
+                                <rect key="frame" x="10" y="59" width="394" height="299.5"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KG4-fz-CIc">
-                                        <rect key="frame" x="28" y="52" width="358" height="297"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7LM-nD-GkU">
-                                                <rect key="frame" x="0.0" y="0.0" width="358" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tkw-6l-zun">
-                                                <rect key="frame" x="0.0" y="20.5" width="358" height="128"/>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7J0-ZY-E7B">
-                                                <rect key="frame" x="0.0" y="148.5" width="358" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="252" ambiguous="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XfU-KX-USr">
-                                                <rect key="frame" x="0.0" y="169" width="358" height="128"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
-                                        </subviews>
-                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHs-F9-M24">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kqe-Jx-BEI">
+                                        <rect key="frame" x="0.0" y="45.5" width="394" height="151"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="151" id="olb-Jj-E44"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F78-ET-b1R">
+                                        <rect key="frame" x="0.0" y="221.5" width="394" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DXx-vV-gSU">
+                                        <rect key="frame" x="0.0" y="264.5" width="394" height="35"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="PKU-e3-S4h"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstItem="KG4-fz-CIc" firstAttribute="top" secondItem="5rf-s1-mfR" secondAttribute="top" constant="8" id="0hs-BZ-Odz"/>
-                                    <constraint firstItem="KG4-fz-CIc" firstAttribute="top" secondItem="O1p-Zk-5zQ" secondAttribute="top" constant="8" id="1FW-fN-7pC"/>
-                                    <constraint firstItem="KG4-fz-CIc" firstAttribute="leading" secondItem="5rf-s1-mfR" secondAttribute="leading" constant="8" id="3jE-cH-fNy"/>
-                                    <constraint firstItem="5rf-s1-mfR" firstAttribute="trailing" secondItem="KG4-fz-CIc" secondAttribute="trailing" constant="8" id="BLv-cf-0GT"/>
-                                    <constraint firstItem="KG4-fz-CIc" firstAttribute="width" secondItem="5rf-s1-mfR" secondAttribute="width" multiplier="0.957219" id="OkK-gf-S5C"/>
-                                    <constraint firstItem="KG4-fz-CIc" firstAttribute="leading" secondItem="5rf-s1-mfR" secondAttribute="leading" constant="8" id="TmT-8q-zUS"/>
-                                    <constraint firstItem="KG4-fz-CIc" firstAttribute="bottom" secondItem="5rf-s1-mfR" secondAttribute="bottom" constant="305" id="XUo-1L-Pwe"/>
-                                    <constraint firstAttribute="trailing" secondItem="KG4-fz-CIc" secondAttribute="trailing" constant="8" id="YRx-Rb-3lP"/>
-                                    <constraint firstItem="KG4-fz-CIc" firstAttribute="top" secondItem="5rf-s1-mfR" secondAttribute="top" constant="8" id="iLu-f4-dy4"/>
-                                    <constraint firstItem="KG4-fz-CIc" firstAttribute="leading" secondItem="O1p-Zk-5zQ" secondAttribute="leading" constant="8" id="uzY-oz-ezv"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="5rf-s1-mfR"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="Jq2-7d-LFO"/>
-                            </scrollView>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="O1p-Zk-5zQ" firstAttribute="trailing" secondItem="evx-6v-RX6" secondAttribute="trailing" id="8Xj-VQ-yMv"/>
-                            <constraint firstItem="O1p-Zk-5zQ" firstAttribute="top" secondItem="0gv-zO-JR9" secondAttribute="top" id="NsL-nd-9zc"/>
-                            <constraint firstItem="O1p-Zk-5zQ" firstAttribute="leading" secondItem="evx-6v-RX6" secondAttribute="leading" id="qU1-Ym-iYG"/>
-                            <constraint firstAttribute="bottom" secondItem="O1p-Zk-5zQ" secondAttribute="bottom" id="rWy-ak-LQR"/>
+                            <constraint firstItem="3Bf-vB-CN7" firstAttribute="leading" secondItem="evx-6v-RX6" secondAttribute="leading" constant="10" id="BuI-Zp-2Oy"/>
+                            <constraint firstItem="evx-6v-RX6" firstAttribute="trailing" secondItem="3Bf-vB-CN7" secondAttribute="trailing" constant="10" id="bIn-AM-4nu"/>
+                            <constraint firstItem="3Bf-vB-CN7" firstAttribute="top" secondItem="evx-6v-RX6" secondAttribute="top" constant="15" id="dQZ-jZ-iKC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="evx-6v-RX6"/>
                     </view>
                     <connections>
-                        <outlet property="descriptionLabel" destination="7J0-ZY-E7B" id="ehG-6T-XGE"/>
-                        <outlet property="image" destination="Tkw-6l-zun" id="DfF-sY-LPZ"/>
-                        <outlet property="titleLabel" destination="7LM-nD-GkU" id="hkx-ZL-X4T"/>
-                        <outlet property="urlTextView" destination="XfU-KX-USr" id="N26-kR-dJ2"/>
+                        <outlet property="descriptionLabel" destination="F78-ET-b1R" id="PF7-Sj-S95"/>
+                        <outlet property="image" destination="kqe-Jx-BEI" id="MKO-Ju-8tJ"/>
+                        <outlet property="titleLabel" destination="vHs-F9-M24" id="mSx-q7-e3z"/>
+                        <outlet property="urlTextView" destination="DXx-vV-gSU" id="x8D-Q5-kVl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kfR-EF-PLZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

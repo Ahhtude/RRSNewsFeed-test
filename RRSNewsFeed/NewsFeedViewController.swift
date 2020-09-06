@@ -67,17 +67,18 @@ extension NewsFeedViewController {
         let cell = tableView.cellForRow(at: indexPath) as! NewsFeedViewCell
         //print("MORE DATA IS \(cell.viewModel.model.mediaDataURL)")
         
-        //pushDetailVC()
+        pushDetailVC(newsModel: cell.viewModel.model)
 //        tableView.beginUpdates()
 //        cell.titleLabel.numberOfLines = (cell.descriptionLabel.numberOfLines == 0) ? 2 : 0
 //        cell.descriptionLabel.numberOfLines = (cell.descriptionLabel.numberOfLines == 0) ? 3 : 0
 //        tableView.endUpdates()
     }
     
-    private func pushDetailVC() {
+    private func pushDetailVC(newsModel model: RSSNewsFeed) {
         let vc =  UIStoryboard(name: "NewsDetailController", bundle: nil)
         .instantiateViewController(withIdentifier: "NewsDetailController") as! NewsDetailController
-
+        let vm = NewsDetailViewModel(newsFeed: model)
+        vc.viewModel = vm
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

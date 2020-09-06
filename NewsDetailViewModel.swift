@@ -7,15 +7,18 @@
 //
 
 import Foundation
+import UIKit
 import AlamofireImage
 
 class NewsDetailViewModel {
-    private let model: RSSNewsFeed?
-    //private let newsImage: UIImage?
+    private(set) var model: RSSNewsFeed?
+    private(set) var image: UIImage?
     
     init(newsFeed model: RSSNewsFeed) {
         self.model = model
     }
     
-    
+    func getImageFromUrlURL() -> URL? {
+      return URL(string: model!.mediaDataURL)
+    }
 }
