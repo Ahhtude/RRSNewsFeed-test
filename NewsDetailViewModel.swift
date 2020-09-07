@@ -19,6 +19,6 @@ class NewsDetailViewModel {
     }
     
     func getImageFromUrlURL() -> URL? {
-      return URL(string: model!.mediaDataURL)
+        return URL(string: model!.mediaDataURL)
     }
 }

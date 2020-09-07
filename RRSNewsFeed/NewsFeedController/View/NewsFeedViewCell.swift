@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class NewsFeedViewCell: UITableViewCell {
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     
@@ -19,10 +20,7 @@ class NewsFeedViewCell: UITableViewCell {
         self.viewModel = model
         setUp()
     }
-    override func awakeFromNib() {
-//        self.drinkName.font = UIFont.robotoFont19
-//        self.drinkName.textColor = UIColor.defaultTextColor
-    }
+    
     override func prepareForReuse() {
         titleLabel.text = ""
         descriptionLabel.text = ""
