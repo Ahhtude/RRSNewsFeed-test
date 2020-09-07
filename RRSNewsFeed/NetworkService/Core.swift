@@ -18,11 +18,10 @@ public final class Core {
             if let error = error { print("Error loading... \(error)") }
         }
     }
-    
-    func saveContext() {
-        if container.viewContext.hasChanges {
-            do { try container.viewContext.save()
-            } catch { print("Error saving... \(error)") }
-        }
-    }
+//    func saveContext() {
+//        if container.viewContext.hasChanges {
+//            do { try container.viewContext.save()
+//            } catch { print("Error saving... \(error)") }
+//        }
+//    }
 }

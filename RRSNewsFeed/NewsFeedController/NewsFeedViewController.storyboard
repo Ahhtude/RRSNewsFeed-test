@@ -32,8 +32,14 @@
                     <navigationItem key="navigationItem" title="RSS News Reader" id="oi0-Ny-Hmk">
                         <barButtonItem key="leftBarButtonItem" systemItem="add" id="xvM-4E-ph1">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="addNewsSourceAction:" destination="mNh-GE-7Rv" id="5EB-8g-dXg"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="CjQ-wa-hPn">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OHt-17-K0w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

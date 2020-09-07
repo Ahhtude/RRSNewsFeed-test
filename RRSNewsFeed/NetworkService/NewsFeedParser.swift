@@ -12,14 +12,15 @@ import Alamofire
 final class NewsFeedParser: NSObject, XMLParserDelegate {
     private var rssItem: [RSSNewsFeed] = []
     private var currentElement = ""
-    public  var baseURL: String = "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
+    public var baseURL: String = "https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
     
-    public var sourceArray = ["https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
-                             ,"https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
-                             ,"https://rss.nytimes.com/services/xml/rss/nyt/Europe.xml"
-                             ,"https://rss.nytimes.com/services/xml/rss/nyt/Health.xml"]
+//    public var sourceArray = ["https://rss.nytimes.com/services/xml/rss/nyt/Technology.xml"
+//                             ,"https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+//                             ,"https://rss.nytimes.com/services/xml/rss/nyt/Europe.xml"
+//                             ,"https://rss.nytimes.com/services/xml/rss/nyt/Health.xml"]
     
     static let instance = NewsFeedParser()
+    
     private override init() {
         super.init()
     }

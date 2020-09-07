@@ -14,8 +14,13 @@ class NewsFeedViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        bindToViewModel()
+        //bindToViewModel()
         //checkStarting()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.bindToViewModel()
     }
     
     private func configureTableView() {
@@ -24,8 +29,15 @@ class NewsFeedViewController: UITableViewController {
         
             self.tableView.delegate = self
             self.tableView.dataSource = self
+        
+            self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
     }
     
+    @objc private func refresh(sender:AnyObject)
+    {
+        self.viewModel.reloadData()
+        self.refreshControl?.endRefreshing()
+    }
     private func checkStarting() {
         if self.viewModel.rssItems.isEmpty {
             let alert = UIAlertController(title: "Internet troubles", message: "You have some trouble with internet. You nead turn ON internet in first lounch", preferredStyle: .alert)
@@ -59,6 +71,11 @@ class NewsFeedViewController: UITableViewController {
     private func reloadData() {
         self.viewModel.reloadData()
     }
+    @IBAction func addNewsSourceAction(_ sender: Any) {
+        let alert = UIAlertController(title: "Add new NewsFeed", message: "Enter feed name and URL", preferredStyle: .alert)
+        self.configureAddNewNewsFeed(alert: alert)
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension NewsFeedViewController {
@@ -79,6 +96,33 @@ extension NewsFeedViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         let cell = tableView.cellForRow(at: indexPath) as! NewsFeedViewCell
         pushDetailVC(newsModel: cell.viewModel.model)
+    }
+    
+    private func configureAddNewNewsFeed(alert: UIAlertController) {
+        alert.addTextField { (textField) in
+                   textField.placeholder = "Feed name"
+               }
+        
+        alert.addTextField { (textField) in
+                   textField.placeholder = "Feed URL"
+               }
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
+            let textFields = alert.textFields
+            let feedName = (textFields?.first)! as UITextField
+            let feedURL = (textFields?.last)! as UITextField
+                   
+            if !feedName.text!.isEmpty && !feedURL.text!.isEmpty {
+            let url = feedURL.text!
+                NewsFeedParser.instance.parseNewsFeed(url: url) { (rssItem) in
+                            rssItem.forEach { item in
+                                CoreDataManager.addData(post: item)
+                            }
+                        }
+            } else {return}
+        }))
     }
     
     //MARK:- Push Detail VC
@@ -106,5 +150,7 @@ extension NewsFeedViewController {
         }
         return action
     }
+    
+    
 }
 

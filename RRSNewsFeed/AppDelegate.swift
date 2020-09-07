@@ -13,7 +13,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        NewsFeedParser.instance.parseNewsFeed(url: NewsFeedParser.baseURL) { (rssItem) in
+        NewsFeedParser.instance.parseNewsFeed(url: NewsFeedParser.instance.baseURL) { (rssItem) in
             rssItem.forEach { item in
                 CoreDataManager.addData(post: item)
             }

@@ -41,9 +41,6 @@ final class CoreDataManager {
                     news.setValue(post.description, forKey: "descr")
                     news.setValue(post.moreData, forKey: "moreData")
                     news.setValue(post.mediaDataURL, forKey: "mediaData")
-//                    if let imgString = post.image {
-//                        news.setValue(imgString, forKey: "image")
-//                    }
                     try Constants.context.save()
         }
         catch {
