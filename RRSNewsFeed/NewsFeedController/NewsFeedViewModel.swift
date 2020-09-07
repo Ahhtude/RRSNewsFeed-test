@@ -39,4 +39,17 @@ class NewsFeedViewModel {
         }
         self.isUpdating = false
         }
+    
+    func addNewNewsSource(url: String) {
+        NewsFeedParser.instance.parseNewsFeed(url: url) { (rssItem) in
+                    rssItem.forEach { item in
+                        CoreDataManager.addData(post: item)
+                    }
+                }
+        self.reloadData()
+    }
+    func deleteNewsFromData(index: Int) {
+        CoreDataManager.deleteData(object: self.rssItems[index])
+        self.rssItems.remove(at: index)
+    }
 }

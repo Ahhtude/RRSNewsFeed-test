@@ -14,13 +14,12 @@ class NewsFeedViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
-        //bindToViewModel()
-        //checkStarting()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.bindToViewModel()
+        self.checkStarting()
     }
     
     private func configureTableView() {
@@ -38,8 +37,9 @@ class NewsFeedViewController: UITableViewController {
         self.viewModel.reloadData()
         self.refreshControl?.endRefreshing()
     }
+    
     private func checkStarting() {
-        if self.viewModel.rssItems.isEmpty {
+        if CoreDataManager.shared.getAllNews().isEmpty {
             let alert = UIAlertController(title: "Internet troubles", message: "You have some trouble with internet. You nead turn ON internet in first lounch", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "okay", style: .default, handler: { action in
                 self.viewModel.reloadData()
@@ -55,7 +55,7 @@ class NewsFeedViewController: UITableViewController {
 //        self.viewModel.didError = { [weak self] error in
 //            self?.viewModelDidError(error: error)
 //        }
-        reloadData()
+        refresh(sender: self)
     }
     
 //    private func viewModelDidError(error: NetworkError) {
@@ -68,9 +68,10 @@ class NewsFeedViewController: UITableViewController {
         }
     }
     
-    private func reloadData() {
-        self.viewModel.reloadData()
-    }
+//    private func reloadData() {
+//        self.viewModel.reloadData()
+//    }
+    
     @IBAction func addNewsSourceAction(_ sender: Any) {
         let alert = UIAlertController(title: "Add new NewsFeed", message: "Enter feed name and URL", preferredStyle: .alert)
         self.configureAddNewNewsFeed(alert: alert)
@@ -79,8 +80,7 @@ class NewsFeedViewController: UITableViewController {
 }
 
 extension NewsFeedViewController {
-    
-    //MARK: - Delegate
+    //MARK: - Delegate & DataSource
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsFeedViewCellViewModel") as? NewsFeedViewCell else { return UITableViewCell() }
         let feed = viewModel.rssItems[indexPath.row]
@@ -98,7 +98,10 @@ extension NewsFeedViewController {
         pushDetailVC(newsModel: cell.viewModel.model)
     }
     
+    
+    //MARK:- AddingNewNews
     private func configureAddNewNewsFeed(alert: UIAlertController) {
+        
         alert.addTextField { (textField) in
                    textField.placeholder = "Feed name"
                }
@@ -109,19 +112,13 @@ extension NewsFeedViewController {
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: {[unowned self] action in
             let textFields = alert.textFields
             let feedName = (textFields?.first)! as UITextField
             let feedURL = (textFields?.last)! as UITextField
                    
-            if !feedName.text!.isEmpty && !feedURL.text!.isEmpty {
-            let url = feedURL.text!
-                NewsFeedParser.instance.parseNewsFeed(url: url) { (rssItem) in
-                            rssItem.forEach { item in
-                                CoreDataManager.addData(post: item)
-                            }
-                        }
-            } else {return}
+            guard !feedName.text!.isEmpty && !feedURL.text!.isEmpty else {return}
+            self.viewModel.addNewNewsSource(url: feedURL.text!)
         }))
     }
     
@@ -142,15 +139,11 @@ extension NewsFeedViewController {
     
     private func deleteRow(rowIndexPathAt indexPath: IndexPath) -> UIContextualAction {
         let action = UIContextualAction(style: .destructive, title: "Delete") {[unowned self] (action, view, _) in
-    
-            CoreDataManager.deleteData(object: self.viewModel.rssItems[indexPath.row])
-            self.viewModel.rssItems.remove(at: indexPath.row)
+            self.viewModel.deleteNewsFromData(index: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .fade)
             self.tableView.reloadData()
         }
         return action
     }
-    
-    
 }
 
