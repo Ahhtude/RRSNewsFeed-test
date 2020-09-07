@@ -2,10 +2,9 @@
 //  NewsFeedViewController.swift
 //  RRSNewsFeed
 //
-//  Created by Sergey berdnik on 04.09.2020.
+//  Created by Sergey berdnik on 07.09.2020.
 //  Copyright © 2020 Sergey berdnik. All rights reserved.
 //
-
 import UIKit
 
 class NewsFeedViewController: UITableViewController {
@@ -145,4 +144,3 @@ extension NewsFeedViewController {
         return action
     }
 }
-

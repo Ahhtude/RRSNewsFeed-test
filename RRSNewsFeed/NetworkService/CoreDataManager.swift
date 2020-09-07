@@ -67,7 +67,7 @@ final class CoreDataManager {
             print("CoreData data count is \(pp.count)")
             return pp
         } catch let error as NSError {
-            print("WAS ERROR in GETALLNEWS \(error)")
+            print("WAS ERROR in GET ALL NEWS \(error)")
             return []
         }
     }
