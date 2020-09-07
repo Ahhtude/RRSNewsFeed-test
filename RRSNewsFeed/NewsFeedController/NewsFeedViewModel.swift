@@ -31,14 +31,14 @@ class NewsFeedViewModel {
     
     private func fetchData() {
         let array = CoreDataManager.shared.getAllNews()
-        array.forEach { item in
+        array.forEach { [unowned self] item in
             self.rssItems.append(RSSNewsFeed(title: item.title!,
                                              description: item.descr!,
                                              mediaDataURL: item.mediaData!,
                                              moreData: item.moreData!))
         }
         self.isUpdating = false
-        }
+    }
     
     func addNewNewsSource(url: String) {
         NewsFeedParser.instance.parseNewsFeed(url: url) { (rssItem) in
@@ -48,6 +48,7 @@ class NewsFeedViewModel {
                 }
         self.reloadData()
     }
+    
     func deleteNewsFromData(index: Int) {
         CoreDataManager.deleteData(object: self.rssItems[index])
         self.rssItems.remove(at: index)

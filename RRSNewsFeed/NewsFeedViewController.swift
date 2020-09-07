@@ -32,8 +32,7 @@ class NewsFeedViewController: UITableViewController {
             self.refreshControl?.addTarget(self, action: #selector(refresh), for: UIControl.Event.valueChanged)
     }
     
-    @objc private func refresh(sender:AnyObject)
-    {
+    @objc private func refresh(sender:AnyObject) {
         self.viewModel.reloadData()
         self.refreshControl?.endRefreshing()
     }
@@ -41,7 +40,7 @@ class NewsFeedViewController: UITableViewController {
     private func checkStarting() {
         if CoreDataManager.shared.getAllNews().isEmpty {
             let alert = UIAlertController(title: "Internet troubles", message: "You have some trouble with internet. You nead turn ON internet in first lounch", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "okay", style: .default, handler: { action in
+            alert.addAction(UIAlertAction(title: "okay", style: .default, handler: {[unowned self] action in
                 self.viewModel.reloadData()
             }))
             self.present(alert, animated: true)
@@ -112,13 +111,13 @@ extension NewsFeedViewController {
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: {[unowned self] action in
+        alert.addAction(UIAlertAction(title: "Save", style: .default, handler: { [unowned self] action in
             let textFields = alert.textFields
             let feedName = (textFields?.first)! as UITextField
             let feedURL = (textFields?.last)! as UITextField
                    
             guard !feedName.text!.isEmpty && !feedURL.text!.isEmpty else {return}
-            self.viewModel.addNewNewsSource(url: feedURL.text!)
+                self.viewModel.addNewNewsSource(url: feedURL.text!)
         }))
     }
     
