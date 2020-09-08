@@ -14,7 +14,7 @@ fileprivate struct Constats {
 }
 
 class NewsFeedViewModel {
-    var rssItems: [RSSNewsFeed] = []
+    private(set) var rssItems: [RSSNewsFeed] = []
     
     //var didError: ((Error) -> Void)?
     var didUpdate: ((NewsFeedViewModel) -> Void)?
